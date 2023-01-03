@@ -1,6 +1,7 @@
 
-" curl -fLo ~/.confg/nvim/autoload/plug.vim --create-dirs \ 
-" https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+" curl -fLo ~/.confg/nvim/autoload/plug.vim --create-dirs
+"         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
 call plug#begin('~/.config/nvim/plugged')
 " coc
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -41,6 +42,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'sheerun/vim-polyglot'
+Plug 'ntpeters/vim-better-whitespace'
 
 " other
 Plug 'EdenEast/nightfox.nvim'
@@ -70,7 +72,7 @@ set wrapscan
 set incsearch
 set gdefault
 set inccommand=split
-nmap <Leader>re :%s\<<C-R><C-W>\>g<Left><Left>
+nmap <Leader>re :%s/<C-R><C-W>//g<Left><Left>
 nmap <Esc><Esc> <cmd>nohlsearch<cr>
 
 " indent
@@ -81,7 +83,7 @@ set tabstop=3
 set softtabstop=3
 set shiftwidth=3
 
-" completion 
+" completion
 set wildmode=list:longest
 set infercase
 set wildmenu
@@ -95,8 +97,8 @@ nmap sj <C-w>j
 nmap sk <C-w>k
 nmap sl <C-w>l
 nmap sh <C-w>h
-nmap ss <C-w>s sj
-nmap sv <C-w>v sl
+nmap ss <C-w>s <C-w>j
+nmap sv <C-w>v <C-w>l
 
 " Operation
 set clipboard+=unnamed
@@ -114,9 +116,9 @@ nmap <C-l> $
 nmap <C-;> %
 nmap <C-s> <cmd>w<cr>
 imap <C-s> <esc><cmd>w<cr>
-
 nmap あ a
 nmap い i
+nmap お o
 
 " log
 set history=1000
@@ -133,25 +135,37 @@ filetype plugin indent on
 set encoding=utf8
 set ttimeoutlen=50
 set helplang=ja
-nmap <Leader>. <cmd>new ~/.config/nvim/init.vim<cr>
 colorscheme nightfox
-let g:highlightedyank_highlight_duration = 150
+nmap <Leader>. <cmd>new ~/.config/nvim/init.vim<cr>
 
-" plugin
-" nmap ts <cmd>Telescope<cr>
+
+" ### plugin ###
+" telescope
+nmap ts <cmd>Telescope<cr>
 nmap tf <cmd>Telescope find_files<cr>
 nmap th <cmd>UndotreeToggle<cr>
-imap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+imap <silent><expr> <cr> coc#pum#visible()?coc#pum#confirm() : "\<cr>"
 
+" highlightedyank
+let g:highlightedyank_highlight_duration = 150
+
+" fern
 let g:fern#renderer = 'nerdfont'
 let g:fern#default_hidden=1
-nmap ff :Fern . -reveal=% -drawer -toggle -width=40<CR>
+nmap ff :Fern . -reveal=% -drawer -toggle -width=40<cr>
 
+" airline
 nmap <C-p> <Plug>AirlineSelectPrevTab
 nmap <C-n> <Plug>AirlineSelectNextTab
 let g:airline_theme = 'wombat'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 
+" quickrun
 let g:quickrun_config={'*':{'split':''}}
+
+" whitespace
+let g:better_whitespace_enabled=0
+let g:strip_whitespace_on_save=1
+let g:strip_whitespace_confirm=0
 
