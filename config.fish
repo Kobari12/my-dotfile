@@ -8,6 +8,8 @@ set -g theme_color_scheme dark
 alias vim=nvim
 alias vi=vim
 alias rm=trash-put
+alias ll=ls -lh
+aliad la=ls -aA
 
 ## set
 set LESSHISTFILE /dev/null
