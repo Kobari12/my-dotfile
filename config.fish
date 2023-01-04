@@ -11,7 +11,6 @@ alias rm=trash-put
 
 ## set
 set LESSHISTFILE /dev/null
-set viminfo /dev/null
 set EDITOR vim
 
 # pyenv
@@ -21,8 +20,9 @@ pyenv init - | source
 pyenv virtualenv-init - | source
 
 # fzf
-set FZF_LEGACY_KEYBINDINGS 0 
+set FZF_LEGACY_KEYBINDINGS 0
 set FZF_DEFAULT_COMMAND 'fd -t f -I -H -E ".git" -E ".cache" . ~'
 set FZF_DEFAULT_OPTS '--preview "bat -nf {}" --reverse --border --height 40%'
 set FZF_FIND_FILE_COMMAND $FZF_DEFAULT_COMMAND
 set FZF_OPEN_COMMAND $FZF_DEFAULT_COMMAND
+set FZF_CD_COMMAND $FZF_DEFAULT_COMMAND
