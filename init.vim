@@ -1,6 +1,5 @@
 
-" curl -fLo ~/.confg/nvim/autoload/plug.vim --create-dirs
-"         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+" curl -fLo ~/.confg/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 call plug#begin('~/.config/nvim/plugged')
 " coc
@@ -33,7 +32,6 @@ Plug 'kyazdani42/nvim-web-devicons'
 " base
 Plug 'mbbill/undotree'
 Plug 'vim-scripts/vim-auto-save'
-" Plug 'jiangmiao/auto-pairs'
 Plug 'machakann/vim-highlightedyank'
 Plug 'ervandew/supertab'
 Plug 'junegunn/vim-easy-align'
@@ -43,6 +41,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'sheerun/vim-polyglot'
 Plug 'ntpeters/vim-better-whitespace'
+Plug 'svermeulen/vim-yoink'
 
 " other
 Plug 'EdenEast/nightfox.nvim'
@@ -173,19 +172,19 @@ let g:fern#default_hidden=1
 nnoremap ff :Fern . -reveal=% -drawer -toggle -width=40<cr>
 
 " airline
-nnoremap <C-p> <Plug>AirlineSelectPrevTab
-nnoremap <C-n> <Plug>AirlineSelectNextTab
 let g:airline_theme = 'wombat'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
+nnoremap <C-p> <Plug>AirlineSelectPrevTab
+nnoremap <C-q> <Plug>AirlineSelectNextTab
 
 " quickrun
 let g:quickrun_config={'*':{'split':''}}
 
 " whitespace
-let g:better_whitespace_enabled=0
-let g:strip_whitespace_on_save=1
-let g:strip_whitespace_confirm=0
+let g:better_whitespace_enabled = 0
+let g:strip_whitespace_on_save = 1
+let g:strip_whitespace_confirm = 0
 
 " incsearch
 nnoremap /  <Plug>(incsearch-forward)
@@ -203,4 +202,10 @@ function! s:config_easyfuzzymotion(...) abort
      \ }), get(a:, 1, {}))
 endfunction
 nnoremap <silent><expr> <Space>/ incsearch#go(<SID>config_easyfuzzymotion())
+
+" yoink
+nnoremap p <plug>(YoinkPaste_p)
+nnoremap tn <plug>(YoinkPostPasteSwapBack)
+nnoremap tp <plug>(YoinkPostPasteSwapForward)
+let g:yoinkSavePersistently = 1
 
