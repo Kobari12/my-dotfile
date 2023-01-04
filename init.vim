@@ -15,8 +15,8 @@ Plug 'ryanoasis/vim-devicons'
 " fern
 Plug 'lambdalisue/fern.vim'
 Plug 'lambdalisue/fern-git-status.vim'
-Plug 'lambdalisue/fern-renderer-nerdfont.vim'
 Plug 'lambdalisue/nerdfont.vim'
+Plug 'lambdalisue/fern-renderer-nerdfont.vim'
 Plug 'lambdalisue/glyph-palette.vim'
 
 " fzf
@@ -33,7 +33,7 @@ Plug 'kyazdani42/nvim-web-devicons'
 " base
 Plug 'mbbill/undotree'
 Plug 'vim-scripts/vim-auto-save'
-Plug 'jiangmiao/auto-pairs'
+" Plug 'jiangmiao/auto-pairs'
 Plug 'machakann/vim-highlightedyank'
 Plug 'ervandew/supertab'
 Plug 'junegunn/vim-easy-align'
@@ -52,6 +52,12 @@ Plug 'vim-jp/vimdoc-ja'
 Plug 'lervag/vimtex'
 Plug 'skanehira/preview-markdown.vim'
 Plug 'skanehira/docker-compose.vim'
+
+" search
+Plug 'easymotion/vim-easymotion'
+Plug 'haya14busa/incsearch.vim'
+Plug 'haya14busa/incsearch-fuzzy.vim'
+Plug 'haya14busa/incsearch-easymotion.vim'
 call plug#end()
 
 let g:mapleader="\<space>"
@@ -60,20 +66,23 @@ let g:mapleader="\<space>"
 set number
 set list
 set showmatch
+set matchpairs& matchpairs+=<:>
 set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%
 set wrap
 set matchtime=3
 set laststatus=2
+set display=lastline
+set pumheight=10
 
-" serch, replace
+" search, replace
 set ignorecase
 set smartcase
 set wrapscan
 set incsearch
 set gdefault
 set inccommand=split
-nmap <Leader>re :%s/<C-R><C-W>//g<Left><Left>
-nmap <Esc><Esc> <cmd>nohlsearch<cr>
+nnoremap <Leader>re :%s/<C-R><C-W>//g<Left><Left>
+nnoremap <Esc><Esc> <cmd>nohlsearch<cr>
 
 " indent
 set autoindent
@@ -82,6 +91,7 @@ set expandtab
 set tabstop=3
 set softtabstop=3
 set shiftwidth=3
+set pastetoggle=<F2>
 
 " completion
 set wildmode=list:longest
@@ -93,12 +103,13 @@ au FileType * setlocal formatoptions-=ro
 " window
 set splitbelow
 set splitright
-nmap sj <C-w>j
-nmap sk <C-w>k
-nmap sl <C-w>l
-nmap sh <C-w>h
-nmap ss <C-w>s <C-w>j
-nmap sv <C-w>v <C-w>l
+set diffopt+=vertical
+nnoremap sj <C-w>j
+nnoremap sk <C-w>k
+nnoremap sl <C-w>l
+nnoremap sh <C-w>h
+nnoremap ss <C-w>s <C-w>j
+nnoremap sv <C-w>v <C-w>l
 
 " Operation
 set clipboard+=unnamed
@@ -107,18 +118,18 @@ set hidden
 set textwidth=0
 set mouse=a
 set completeopt=menu,menuone
-nmap O :<C-u>call append(expand('.'), '')<cr>j
+nnoremap O :<C-u>call append(expand('.'), '')<cr>j
 tmap <Esc> <C-\><C-n>
-nmap <C-j> }
-nmap <C-k> {
-nmap <C-h> ^
-nmap <C-l> $
-nmap <C-;> %
-nmap <C-s> <cmd>w<cr>
-imap <C-s> <esc><cmd>w<cr>
-nmap あ a
-nmap い i
-nmap お o
+nnoremap <C-j> }
+nnoremap <C-k> {
+nnoremap <C-h> ^
+nnoremap <C-l> $
+nnoremap <C-m> %
+nnoremap <C-s> <cmd>w<cr>
+inoremap <C-s> <esc><cmd>w<cr>
+nnoremap あ a
+nnoremap い i
+nnoremap お o
 
 " log
 set history=1000
@@ -128,23 +139,30 @@ set noswapfile
 set directory=.
 set nobackup
 set nowritebackup
-set viminfo=
+autocmd BufReadPost *
+      \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+      \ exe "normal! g'\"" | endif
 
 " other
 filetype plugin indent on
 set encoding=utf8
-set ttimeoutlen=50
 set helplang=ja
+set ttimeoutlen=50
 colorscheme nightfox
-nmap <Leader>. <cmd>new ~/.config/nvim/init.vim<cr>
-
+nnoremap <Leader>. <cmd>new ~/.dotfile<cr>
 
 " ### plugin ###
 " telescope
-nmap ts <cmd>Telescope<cr>
-nmap tf <cmd>Telescope find_files<cr>
-nmap th <cmd>UndotreeToggle<cr>
-imap <silent><expr> <cr> coc#pum#visible()?coc#pum#confirm() : "\<cr>"
+nnoremap ts <cmd>Telescope<cr>
+nnoremap tf <cmd>Telescope find_files<cr>
+nnoremap th <cmd>History<cr>
+
+" undotree
+nnoremap tu <cmd>UndotreeToggle<cr>
+
+" coc
+inoremap <silent><expr> <cr> coc#pum#visible()?coc#pum#confirm() : "\<cr>"
+nnoremap <Leader>, <cmd>new ~/.config/nvim/snippet<cr>
 
 " highlightedyank
 let g:highlightedyank_highlight_duration = 150
@@ -152,11 +170,11 @@ let g:highlightedyank_highlight_duration = 150
 " fern
 let g:fern#renderer = 'nerdfont'
 let g:fern#default_hidden=1
-nmap ff :Fern . -reveal=% -drawer -toggle -width=40<cr>
+nnoremap ff :Fern . -reveal=% -drawer -toggle -width=40<cr>
 
 " airline
-nmap <C-p> <Plug>AirlineSelectPrevTab
-nmap <C-n> <Plug>AirlineSelectNextTab
+nnoremap <C-p> <Plug>AirlineSelectPrevTab
+nnoremap <C-n> <Plug>AirlineSelectNextTab
 let g:airline_theme = 'wombat'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
@@ -168,4 +186,21 @@ let g:quickrun_config={'*':{'split':''}}
 let g:better_whitespace_enabled=0
 let g:strip_whitespace_on_save=1
 let g:strip_whitespace_confirm=0
+
+" incsearch
+nnoremap /  <Plug>(incsearch-forward)
+nnoremap s/ <Plug>(incsearch-fuzzyspell-/)
+nnoremap sl <Plug>(easymotion-overwin-line)
+nnoremap sw <Plug>(easymotion-overwin-w)
+nnoremap sf <Plug>(easymotion-overwin-f2)
+function! s:config_easyfuzzymotion(...) abort
+   return extend(copy({
+     \ 'converters': [incsearch#config#fuzzyword#converter()],
+     \ 'modules': [incsearch#config#easymotion#module({'overwin': 1})],
+     \ 'keymap': {"\<CR>": '<Over>(easymotion)'},
+     \ 'is_expr': 0,
+     \ 'is_stay': 1
+     \ }), get(a:, 1, {}))
+endfunction
+nnoremap <silent><expr> <Space>/ incsearch#go(<SID>config_easyfuzzymotion())
 
