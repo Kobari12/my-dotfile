@@ -205,7 +205,8 @@ nnoremap <silent><expr> <Space>/ incsearch#go(<SID>config_easyfuzzymotion())
 
 " yoink
 nnoremap p <plug>(YoinkPaste_p)
-nnoremap tn <plug>(YoinkPostPasteSwapBack)
-nnoremap tp <plug>(YoinkPostPasteSwapForward)
+nnoremap <expr> p yoink#canSwap()?'<plug>(YoinkPostPasteSwapBack)':'<plug>(YoinkPaste_p)'
+nnoremap <expr> P yoink#canSwap()?'<plug>(YoinkPostPasteSwapForward)':'<plug>(YoinkPaste_P)'
 let g:yoinkSavePersistently = 1
+
 
