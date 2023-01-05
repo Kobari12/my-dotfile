@@ -140,7 +140,8 @@ set nobackup
 set nowritebackup
 autocmd BufReadPost *
       \ if line("'\"") > 0 && line ("'\"") <= line("$") |
-      \ exe "normal! g'\"" | endif
+      \ exe "normal! g'\"" |
+      \ endif
 
 " other
 filetype plugin indent on
@@ -208,5 +209,15 @@ nnoremap p <plug>(YoinkPaste_p)
 nnoremap <expr> p yoink#canSwap()?'<plug>(YoinkPostPasteSwapBack)':'<plug>(YoinkPaste_p)'
 nnoremap <expr> P yoink#canSwap()?'<plug>(YoinkPostPasteSwapForward)':'<plug>(YoinkPaste_P)'
 let g:yoinkSavePersistently = 1
+
+" latex
+let maplocalleader=' '
+let g:tex_flavor = "latex"
+
+set encoding=utf-8
+set fileencoding=&encoding
+set fileencodings=ucs-bom,utf-8,iso-2022-jp,cp932,euc-jp,default,latin
+
+set ambiwidth=double
 
 
