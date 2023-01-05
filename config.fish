@@ -28,6 +28,6 @@ set -U fish_user_paths "/opt/miniconda3/bin" $fish_user_paths
 source (conda info --root)/etc/fish/conf.d/conda.fish
 
 # yay & fisher list
-yay -Qeq >> ~/.dotfile/yay.list
-fisher list >> ~/.dotfile/fisher.list
+yay -Qeq    > ~/.dotfile/yay.list
+fisher list > ~/.dotfile/fisher.list
 
