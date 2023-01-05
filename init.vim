@@ -117,6 +117,10 @@ set hidden
 set textwidth=0
 set mouse=a
 set completeopt=menu,menuone
+set encoding=utf-8
+set fileencoding=&encoding
+set fileencodings=ucs-bom,utf-8,iso-2022-jp,cp932,euc-jp,default,latin
+set ambiwidth=double
 nnoremap O :<C-u>call append(expand('.'), '')<cr>j
 tmap <Esc> <C-\><C-n>
 nnoremap <C-j> }
@@ -213,11 +217,4 @@ let g:yoinkSavePersistently = 1
 " latex
 let maplocalleader=' '
 let g:tex_flavor = "latex"
-
-set encoding=utf-8
-set fileencoding=&encoding
-set fileencodings=ucs-bom,utf-8,iso-2022-jp,cp932,euc-jp,default,latin
-
-set ambiwidth=double
-
 
