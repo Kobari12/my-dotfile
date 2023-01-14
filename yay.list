@@ -17,6 +17,7 @@ fzf
 gcc
 ghq
 git
+go
 grub
 htop
 intel-ucode
@@ -37,9 +38,9 @@ openssh
 pacman-contrib
 patch
 pkgconf
+powerline
 python-pip
 python-pynvim
-samba
 sudo
 terminus-font
 texinfo
@@ -48,6 +49,7 @@ texlive-langjapanese
 tmux
 trash-cli
 ufw
+unzip
 vim
 wget
 which
