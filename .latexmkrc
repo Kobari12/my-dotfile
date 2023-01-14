@@ -1,12 +1,12 @@
 #!/usr/bin/env perl
 
 #### PDF_MODE ####
-#PDF_MODE0: $latexにより dviファイルを生成する。PDFを出力しない
-#しない1: $pdflatexを使って、DVIファイルなどを経由せずに直接PDFを作成
-#を2: $latexにより生成されたDVIファイルを$dvipsによりPSファイルに変換したあと，$ps2pdfによりPDFを作成
-#を3: $latexにより dviファイルを生成し，$dvipdfによりPDFを作成
-#を4: $lualatexにより直接PDFを作成
-#を5: $xelatexによりDVIを生成後，$xdvipdfmxによりPDFを作成
+# 0: $latexにより dviファイルを生成する。PDFを出力しない
+# 1: $pdflatexを使って、DVIファイルなどを経由せずに直接PDFを作成
+# 2: $latexにより生成されたDVIファイルを$dvipsによりPSファイルに変換したあと，$ps2pdfによりPDFを作成
+# 3: $latexにより dviファイルを生成し，$dvipdfによりPDFを作成
+# 4: $lualatexにより直接PDFを作成
+# 5: $xelatexによりDVIを生成後，$xdvipdfmxによりPDFを作成
 ##################
 
 $pdf_mode         = 3;
