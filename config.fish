@@ -10,13 +10,14 @@ alias vi=vim
 alias rm=trash-put
 alias ll='ls -lh'
 alias la='ls -aA'
+alias n='vim'
 
 ## set
 set LESSHISTFILE /dev/null
 set EDITOR vim
 
 ## fzf
-set FZF_LEGACY_KEYBINDINGS 0
+set FZF_LEGACY_KEYBINDINGS 1
 set FZF_DEFAULT_COMMAND 'fd -t f -I -H -E ".git" -E ".cache" . ~'
 set FZF_DEFAULT_OPTS '--preview "bat -nf {}" --reverse --border --height 40%'
 set FZF_FIND_FILE_COMMAND $FZF_DEFAULT_COMMAND
@@ -28,6 +29,5 @@ set PATH /opt/miniconda3/bin $PATH
 source (conda info --root)/etc/fish/conf.d/conda.fish
 
 ## yay & fisher list
-yay -Qeq    > ~/.dotfile/yay.list
-fisher list > ~/.dotfile/fisher.list
-
+yay -Qeq    > ~/.dotfiles/yay.list
+fisher list > ~/.dotfiles/fisher.list
