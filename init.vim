@@ -152,7 +152,7 @@ filetype plugin indent on
 set encoding=utf8
 set helplang=ja
 set ttimeoutlen=50
-colorscheme nightfox
+" colorscheme nightfox
 nnoremap <Leader>. <cmd>new ~/.dotfile<cr>
 
 " ### plugin ###
@@ -213,8 +213,4 @@ nnoremap p <plug>(YoinkPaste_p)
 nnoremap <expr> p yoink#canSwap()?'<plug>(YoinkPostPasteSwapBack)':'<plug>(YoinkPaste_p)'
 nnoremap <expr> P yoink#canSwap()?'<plug>(YoinkPostPasteSwapForward)':'<plug>(YoinkPaste_P)'
 let g:yoinkSavePersistently = 1
-
-" latex
-let maplocalleader=' '
-let g:tex_flavor = "latex"
 
